@@ -1,0 +1,14 @@
+# Run config for reducing the flagship catalog
+
+resume: False
+
+pipelines: colour_mag_cuts
+
+output_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/colour_mag_cuts/outputs
+log_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/colour_mag_cuts/logs
+
+inputs:
+  photometry_catalog: /global/homes/t/tcornish/TXPipe/data/example/inputs/photometry_catalog.hdf5
+
+pre_script: ""
+post_script: ""
