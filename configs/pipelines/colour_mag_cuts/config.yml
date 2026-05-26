@@ -4,7 +4,7 @@ SelectLBGColorCuts:
     g-dropouts:
       - g - r > 1
       - r - i < 1
-      - g - r > 1.5 * (r - 1) + 0.8
+      - g - r > 1.5 * (r - i) + 0.8
     r-dropouts:
       - r - i > 1.2
       - i - z < 0.7
