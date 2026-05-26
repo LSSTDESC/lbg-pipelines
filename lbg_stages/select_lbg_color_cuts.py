@@ -25,13 +25,14 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         {
             "color_mag_cuts": StageParameter(
                 dict,
-                {"g-dropouts": [
-                    "g - r > 1",
-                    "r - i < 1",
-                    "g - r > 1.5 * (r - i) + 0.8"
+                {
+                    "g-dropouts": [
+                        "g - r > 1",
+                        "r - i < 1",
+                        "g - r > 1.5 * (r - i) + 0.8",
                     ]
                 },
-                msg="Colour-magnitude cuts to apply for each dropout sample."
+                msg="Colour-magnitude cuts to apply for each dropout sample.",
             ),
         }
     )
@@ -98,18 +99,14 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         # Restore original warning settings in case we are being called from a library
         np.seterr(**original_warning_settings)
 
-
     def data_iterator(self):
         chunk_rows = self.config["chunk_rows"]
         phot_cols = [f"mag_{b}" for b in "ugrizy"] + ["ra", "dec"]
-        #extra_cols = [c for c in self.config["extra_cols"] if c]
-        #phot_cols += extra_cols
+        # extra_cols = [c for c in self.config["extra_cols"] if c]
+        # phot_cols += extra_cols
 
         it = self.combined_iterators(
-            chunk_rows,
-            "photometry_catalog",
-            "photometry",
-            phot_cols
+            chunk_rows, "photometry_catalog", "photometry", phot_cols
         )
 
         return it
@@ -128,8 +125,10 @@ class SelectLBGColorCuts(TXBaseLensSelector):
 
         ntot = s.size
         nsel = s.sum()
-        print(f"Rank {self.rank} selected {nsel} objects out of {ntot} "
-              f"as being within the desired footprint.")
+        print(
+            f"Rank {self.rank} selected {nsel} objects out of {ntot} "
+            f"as being within the desired footprint."
+        )
         return s
 
     def apply_colmag_cuts(self, phot_data):
@@ -153,6 +152,6 @@ class SelectLBGColorCuts(TXBaseLensSelector):
             nsel += mask_zbin.sum()
             zbin[mask_zbin] = ik
         print(f"Rank {self.rank} found {nsel} / {ntot} LBGs (any bin).")
-        
+
         pz_data["zbin"] = zbin
         return pz_data
