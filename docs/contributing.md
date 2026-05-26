@@ -1,39 +1,44 @@
 # Contributing
 
+
 ## Workflow
 
-Direct pushes to `main` are disabled — all changes must go through a pull request.
+This describes the workflow for contributing new pipelines, stages, bugfixes, etc. to the LBG pipelines.
+This workflow is designed to help us stay informed, collaborate, and ensure the high quality of our code and documentation.
 
-1. **Open an issue** to discuss a new pipeline, analysis, or bug before writing code.
-This will make it easier to keep everyone up to date on what folks are working on so we don't duplicate work.
-2. **Create a branch** from `main` that contains the ticket number and a short description:
-   ```bash
-   git checkout -b issue-#/short-description
-   ```
-3. **Make your changes.** See the sections below for conventions.
-4. **Open a pull request** against `main`.
-Use the PR template to describe your changes.
-5. **Request a review** from at least one other team member before merging.
+1. **Open or choose an issue**.
 
-## Branch naming
+      - If you have a new idea you would like to contribute to the pipelines, open a new issue.
+      Make sure you give it a short, descriptive title, and that you describe the goal of the new work and your proposed implementation plan.
+      Feel free to request feedback!
 
-Use the pattern `issue-#/short-description`, e.g.:
+      - You can also choose an existing issue to work on.
+      Issues labeled "Not Started" are particularly good options.
+      If you're new to the LBG pipelines, we recommend you select an issue labeled "Good First Issue".
+      If none exist, feel free to reach out to John Franklin Crenshaw and/or Tanveer Karim on Slack, and they will help you find a place to start.
 
-```
-issue-1/lbg-color-cuts
-```
+2. **Create a branch** from `main` that contains the ticket number and a short description: `issue-#/short-description`.
+   Once you create a branch for an issue and start working on it, please do the following in the sidebar on the issue's Github page:
 
-## Pipeline changes
+      1. Assign yourself to the issue
+      2. Apply the "In Progress" label
+      3. Link your branch to the issue (near the bottom of the sidebar under the "development" heading). If you can't find your branch in the dropdown menu, it's likely you haven't yet pushed your branch to Github.
 
-- Place new pipelines under `configs/pipelines/<name>/` (a `pipeline.yml` and a `config.yml`).
-- Add a new run config under `configs/runs/<name>.yml` for any new dataset or run combination.
-- Update `configs/pipelines/README.md` and/or `configs/runs/README.md` with the description of the new addition.
-- If you add new shared reference files, put them in `configs/`.
+3. **Make your changes**.
+See the sections below for conventions.
+You should also read the page [Stages, Pipelines, Runs](stages_pipelines_runs.md).
+If you add a new pipeline or run, please add a description to the [list of pipelines](https://github.com/LSSTDESC/lbg-pipelines/blob/main/configs/pipelines/README.md) and/or [list of runs](https://github.com/LSSTDESC/lbg-pipelines/blob/main/configs/runs/README.md).
 
-## Notebook conventions
+4. **Open a pull request**.
+Direct pushes to `main` are disabled, so all changes must go through a pull request (PR).
 
-- Strip outputs before committing (handled by the `nbstripout` pre-commit hook).
-- Name notebooks descriptively, e.g. `<topic>_<data_version>.ipynb`.
+5. **Request a review**.
+We require that all PRs receive a review before they are merged.
+You can request a specific reviewer in the sidebar on the PR's Github page, or you can post a message in `#desc-lbg` on Slack to make a more general request.
+You should always feel free to request a review from John Franklin!
+
+
+## Code conventions
 
 ## Python code
 
@@ -44,13 +49,19 @@ ruff check --fix .   # lint
 ruff format .        # format
 ```
 
+## Notebook conventions
+
+- Strip outputs before committing (handled by the `nbstripout` pre-commit hook).
+- Name notebooks descriptively, e.g. `<topic>_<data_version>.ipynb`.
+
 ## Documentation
 
 The docs site is built from the `docs/` directory with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
 To preview locally:
 
 ```bash
-pip install mkdocs-material
+lbg-env
+conda activate docs
 mkdocs serve
 ```
 

@@ -26,6 +26,20 @@ theme:
     - toc.integrate
     - content.code.copy
 
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            docstring_style: numpy
+            show_root_heading: true
+            show_if_no_docstring: false
+            show_source: true
+            members_order: source
+            allow_inspection: false
+
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -44,7 +58,8 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting_started.md
-  - Pipelines: pipelines.md
+  - Stages, Pipelines, Runs: stages_pipelines_runs.md
+  - Scripts: scripts.md
   - Notebooks: notebooks.md
   - Data: data.md
   - Contributing: contributing.md

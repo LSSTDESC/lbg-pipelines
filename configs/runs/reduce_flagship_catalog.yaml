@@ -1,0 +1,13 @@
+# Run config for reducing the flagship catalog
+
+resume: False
+
+pipelines: reduce_flagship_catalog
+
+output_dir: $LBG_DIR/shared/reduce_flagship_catalog/outputs
+log_dir: $LBG_DIR/shared/reduce_flagship_catalog/logs
+
+inputs: {}
+
+pre_script: ""
+post_script: ""

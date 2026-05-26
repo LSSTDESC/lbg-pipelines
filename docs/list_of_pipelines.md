@@ -1,0 +1,1 @@
+--8<-- "configs/pipelines/README.md"

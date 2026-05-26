@@ -1,0 +1,25 @@
+# Shared site config used by all three run scripts (run_debug.sh,
+# run_interactive.sh, run_batch.sh).
+#
+# launcher: mini
+#   ceci's "mini" launcher manages stage execution directly, without a
+#   separate workflow manager. It tracks which stages have finished, finds
+#   stages whose input dependencies are now satisfied, and launches them.
+#
+# site: local
+#   Runs each stage as a plain subprocess with no srun wrapper. This works
+#   inside Slurm allocations (sbatch / salloc) and on the login node for
+#   dry runs.
+#
+# max_threads: 128
+#   The maximum number of stages that can run at the same time. Each stage
+#   is a separate subprocess that uses one CPU core. On a Perlmutter CPU
+#   node with 128 cores, independent pipeline stages will run in parallel
+#   and fully utilize the node.
+
+launcher:
+  name: mini
+
+site:
+  name: local
+  max_threads: 128

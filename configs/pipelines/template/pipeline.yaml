@@ -5,7 +5,7 @@
 modules: lbg_stages
 
 # Config file for this pipeline
-config: configs/pipelines/template/config.yml
+config: configs/pipelines/template/config.yaml
 
 # Define all the stages.
 # Ceci will use their inputs/outputs to figure out in which order to run them.

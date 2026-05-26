@@ -2,7 +2,7 @@
 """Merge run, pipeline(s), and site YAML configs into a single ceci input file.
 
 The run config must contain a ``pipelines`` key giving the pipeline name(s) to
-load from ``configs/pipelines/<name>/pipeline.yml``.  When multiple pipelines
+load from ``configs/pipelines/<name>/pipeline.yaml``.  When multiple pipelines
 are listed their ``modules``, ``stages``, and per-stage configs are merged.
 
 Usage
@@ -19,6 +19,7 @@ Prints the path to the merged YAML so callers can do:
     ceci "$MERGED"
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -27,7 +28,7 @@ import yaml
 
 def load_yaml(path):
     with open(path) as fh:
-        return yaml.safe_load(fh) or {}
+        return yaml.safe_load(os.path.expandvars(fh.read())) or {}
 
 
 def merge_pipelines(pipeline_names, pipelines_dir):
@@ -45,7 +46,7 @@ def merge_pipelines(pipeline_names, pipelines_dir):
     all_stage_configs = {}
 
     for name in pipeline_names:
-        pipeline_path = pipelines_dir / name / "pipeline.yml"
+        pipeline_path = pipelines_dir / name / "pipeline.yaml"
         if not pipeline_path.exists():
             print(f"error: pipeline config not found: {pipeline_path}", file=sys.stderr)
             sys.exit(1)

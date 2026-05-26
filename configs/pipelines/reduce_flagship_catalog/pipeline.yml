@@ -1,7 +1,0 @@
-
-modules: lbg_stages
-
-config: configs/pipelines/reduce_flagship_catalog/config.yml
-
-stages:
-  - name: FlagshipReducer

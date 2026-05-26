@@ -9,7 +9,8 @@ This repository hosts the pipelines, notebooks, and supporting code for the DESC
 | | |
 |---|---|
 | [Getting Started](getting_started.md) | Environment setup and first pipeline run |
-| [Pipelines](pipelines/index.md) | Description of the pipelines |
+| [Stages, Pipelines, and Runs](stages_pipelines_runs.md) | Description of how pipelines are built and organized |
+| [Scripts](scripts.md) | How to run pipelines: batch, interactive, and debug |
 | [Notebooks](notebooks.md) | Analysis notebooks index |
 | [Data](data.md) | Data locations and conventions on NERSC |
 | [Contributing](contributing.md) | How to add code, open PRs, and ask questions |
