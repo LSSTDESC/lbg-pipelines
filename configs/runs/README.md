@@ -10,4 +10,4 @@ A run to reduce the Flagship simulation pixel files and reduce to a standard cat
 
 ## lbg_color_cuts_example
 
-A run to apply color cuts to the default `TXPipe` example photometric catalog, selecting LBGs from the catalog and labelling them according to their assigned dropout samples 
+A run to apply color cuts to the default `TXPipe` example photometric catalog, selecting LBGs from the catalog and labelling them according to their assigned dropout samples

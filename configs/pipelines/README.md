@@ -10,4 +10,4 @@ A simple pipeline that loads the Flagship simulation pixel files and reduces to 
 
 ## select_lbg_color_cuts
 
-A simple pipeline that loads the example `TXPipe` photometry catalog and applies color cuts to select LBGs, producing a file which labels each source according to the dropout sample to which they belong (if any) 
+A simple pipeline that loads the example `TXPipe` photometry catalog and applies color cuts to select LBGs, producing a file which labels each source according to the dropout sample to which they belong (if any)
