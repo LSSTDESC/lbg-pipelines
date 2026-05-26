@@ -46,6 +46,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
           "colour_mag_cuts" stage parameter
         - `apply_redshift_cut` has been replaced by a new method, `apply_colmag_cuts`
         """
+
         # Suppress some warnings from numpy that are not relevant
         original_warning_settings = np.seterr(all="ignore")
 
@@ -122,12 +123,13 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         TODO: Include SNR cuts?
         """
         # select only galaxies that are in the footprint
-        s = self.select_in_footprint(phot_data)
+        s = np.ones(len(phot_data["ra"]))
+        s *= self.select_in_footprint(phot_data)
 
         ntot = s.size
         nsel = s.sum()
         print(f"Rank {self.rank} selected {nsel} objects out of {ntot} "
-              f"as potential LBGs.")
+              f"as being within the desired footprint.")
         return s
 
     def apply_colmag_cuts(self, phot_data):
@@ -148,6 +150,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         nsel = 0
 
         for ik, k in enumerate(cuts):
+            mask_zbin = np.ones_like(u, dtype=bool)
             mask_zbin = reduce(
                 self.combine_and,
                 [numexpr.evaluate(c) for c in cuts[k]]
