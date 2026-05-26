@@ -7,7 +7,7 @@ from txpipe.utils import LensNumberDensityStats
 
 class SelectLBGColorCuts(TXBaseLensSelector):
     """
-    Applies colour-magnitude to photometry catalog to select dropouts.
+    Applies color-magnitude to photometry catalog to select dropouts.
 
     Inherits from `TXBaseLensSelector` to produce outputs in TXPipe-
     compatible format. The input is a catalog (in HDF5 format) containing
@@ -23,7 +23,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
     config_options = TXBaseLensSelector.config_options.copy()
     config_options.update(
         {
-            "color_mag_cuts": StageParameter(
+            "color_cuts": StageParameter(
                 dict,
                 {
                     "g-dropouts": [
@@ -32,7 +32,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
                         "g - r > 1.5 * (r - i) + 0.8",
                     ]
                 },
-                msg="Colour-magnitude cuts to apply for each dropout sample.",
+                msg="Color-magnitude cuts to apply for each dropout sample.",
             ),
         }
     )
@@ -44,7 +44,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         This is an almost exact copy of the `run` method from `TXBaseLensSelector`, with
         two main differences:
         - the number of lens bins is now determined from the length of the
-          "color_mag_cuts" stage parameter
+          "color_cuts" stage parameter
         - `apply_redshift_cut` has been replaced by a new method, `apply_colmag_cuts`
         """
 
@@ -52,7 +52,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         original_warning_settings = np.seterr(all="ignore")
 
         # Determine number of lens bins (i.e. dropout samples)
-        nbin_lens = len(self.config["color_mag_cuts"])
+        nbin_lens = len(self.config["color_cuts"])
         # Since we're not using redshift bins, set the bin edges to NaN
         # (parameter is required for TXPipe-format output)
         self.config["lens_zbin_edges"] = [np.nan] * (nbin_lens + 1)
@@ -133,7 +133,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
 
     def apply_colmag_cuts(self, phot_data):
         """
-        Applies the colour-magnitude cuts to identify candidate LBGs.
+        Applies the color-magnitude cuts to identify candidate LBGs.
         """
         import numexpr
 
@@ -142,7 +142,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         zbin = np.repeat(-1, ntot)
 
         pz_data = {}
-        cuts = self.config["color_mag_cuts"]
+        cuts = self.config["color_cuts"]
         nsel = 0
 
         for ik, k in enumerate(cuts):

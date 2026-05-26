@@ -1,6 +1,6 @@
 
 SelectLBGColorCuts:
-  color_mag_cuts:
+  color_cuts:
     g-dropouts:
       - g - r > 1
       - r - i < 1
