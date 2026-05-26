@@ -2,10 +2,10 @@
 
 resume: False
 
-pipelines: colour_mag_cuts
+pipelines: color_mag_cuts
 
-output_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/colour_mag_cuts/outputs
-log_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/colour_mag_cuts/logs
+output_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/color_mag_cuts/outputs
+log_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/color_mag_cuts/logs
 
 inputs:
   photometry_catalog: /global/homes/t/tcornish/TXPipe/data/example/inputs/photometry_catalog.hdf5
