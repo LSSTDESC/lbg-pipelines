@@ -1,7 +1,7 @@
 
 modules: lbg_stages
 
-config: configs/pipelines/select_lbg_color_cuts/config.yml
+config: configs/pipelines/select_lbg_color_cuts/config.yaml
 
 stages:
   - name: SelectLBGColorCuts
