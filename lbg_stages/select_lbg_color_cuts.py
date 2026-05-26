@@ -136,9 +136,6 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         """
         Applies the colour-magnitude cuts to identify candidate LBGs.
         """
-
-        from functools import reduce
-
         import numexpr
 
         u, g, r, i, z, y = [phot_data[f"mag_{b}"] for b in "ugrizy"]
@@ -151,22 +148,11 @@ class SelectLBGColorCuts(TXBaseLensSelector):
 
         for ik, k in enumerate(cuts):
             mask_zbin = np.ones_like(u, dtype=bool)
-            mask_zbin = reduce(
-                self.combine_and,
-                [numexpr.evaluate(c) for c in cuts[k]]
-            )
+            for c in cuts[k]:
+                mask_zbin *= numexpr.evaluate(c)
             nsel += mask_zbin.sum()
             zbin[mask_zbin] = ik
         print(f"Rank {self.rank} found {nsel} / {ntot} LBGs (any bin).")
-
+        
         pz_data["zbin"] = zbin
-
-
-    def combine_and(self, a, b):
-        """
-        Simple multiplication function.
-
-        Designed to be fed into `functools.reduce()` to combine an arbitrary
-        number of masks.
-        """
-        return a * b
+        return pz_data
