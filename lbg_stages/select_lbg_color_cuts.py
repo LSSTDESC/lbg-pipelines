@@ -7,7 +7,7 @@ from txpipe.utils import LensNumberDensityStats
 
 class SelectLBGColorCuts(TXBaseLensSelector):
     """
-    Applies color-magnitude to photometry catalog to select dropouts.
+    Applies color-color cuts to photometry catalog to select dropouts.
 
     Inherits from `TXBaseLensSelector` to produce outputs in TXPipe-
     compatible format. The input is a catalog (in HDF5 format) containing
@@ -15,6 +15,13 @@ class SelectLBGColorCuts(TXBaseLensSelector):
     HDF5 file containing "tomographic" information about each dropout sample,
     which primarily includes a label for each source to assign it to a given
     sample.
+
+    Parameters
+    ----------
+    color_cuts : dict
+        Color-color cuts to apply for each dropout sample.
+        Default: ``{"g-dropouts": ["g - r > 1", "r - i < 1", "g - r > 1.5 *
+          (r - i) + 0.8"]}``
     """
 
     name = "SelectLBGColorCuts"
@@ -32,7 +39,7 @@ class SelectLBGColorCuts(TXBaseLensSelector):
                         "g - r > 1.5 * (r - i) + 0.8",
                     ]
                 },
-                msg="Color-magnitude cuts to apply for each dropout sample.",
+                msg="Color-color cuts to apply for each dropout sample.",
             ),
         }
     )
@@ -44,8 +51,8 @@ class SelectLBGColorCuts(TXBaseLensSelector):
         This is an almost exact copy of the `run` method from `TXBaseLensSelector`, with
         two main differences:
         - the number of lens bins is now determined from the length of the
-          "color_cuts" stage parameter
-        - `apply_redshift_cut` has been replaced by a new method, `apply_colmag_cuts`
+          ``color_cuts`` stage parameter
+        - ``apply_redshift_cut`` is replaced by a new method, ``apply_colmag_cuts``
         """
 
         # Suppress some warnings from numpy that are not relevant
