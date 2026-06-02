@@ -605,6 +605,12 @@
 <h1 id="list-of-pipelines">List of pipelines</h1>
 <h2 id="template"><code>template</code></h2>
 <p>A simple dummy template pipeline, with minimal <code>pipeline.yaml</code> and <code>config.yaml</code> files</p>
+<h2 id="smoke_test"><code>smoke_test</code></h2>
+<p>A self-contained smoke-test pipeline.
+Generates a tiny synthetic galaxy catalog (no external data needed) and runs it
+through LSST Y1 photometric errors and an i-band depth cut.
+Use this to verify that the environment and pipeline machinery are installed
+correctly.</p>
 <h2 id="reduce_flagship_catalog"><code>reduce_flagship_catalog</code></h2>
 <p>A simple pipeline that loads the Flagship simulation pixel files and reduces to a standard catalog of positions, magnitudes, and info required for the DESI spectroscopic selector</p>
 
