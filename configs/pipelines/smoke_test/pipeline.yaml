@@ -1,0 +1,28 @@
+# Smoke-test pipeline — no external data required.
+# Generates a tiny synthetic catalog and runs it through LSST Y1 photometric
+# errors and an i-band depth cut, verifying that the full stage chain works.
+
+modules: >
+  lbg_stages
+  rail.creation.degraders.photometric_errors
+  rail.creation.degraders.quantityCut
+
+config: configs/pipelines/smoke_test/config.yaml
+
+stages:
+  # Generate a synthetic catalog in memory — no input files needed
+  - name: SmokeTestSource
+
+  # Add LSST Y1 photometric noise
+  - name: SmokeTestLsst
+    classname: LSSTErrorModel
+    aliases:
+      input: smoke_catalog
+      output: smoke_lsst
+
+  # Apply Y1 i-band depth cut
+  - name: SmokeTestDepthCut
+    classname: QuantityCut
+    aliases:
+      input: smoke_lsst
+      output: smoke_final

@@ -41,7 +41,22 @@ Finally you can install the pre-commit hooks:
 pre-commit install
 ```
 
-Now you're ready to work!
+## Verifying your installation
+
+Run the smoke-test pipeline to confirm that your environment and pipeline
+machinery are working correctly:
+
+```bash
+cd lbg-pipelines
+lbg-env
+bash scripts/run_debug.sh smoke_test
+```
+
+The smoke test generates a small synthetic galaxy catalog (no external data
+required), applies LSST Y1 photometric noise, and writes ~100 rows of output
+to `results/smoke_test/outputs/`.
+It should complete in a few seconds.
+If it succeeds you are ready to run real pipelines.
 
 ## Running a pipeline
 

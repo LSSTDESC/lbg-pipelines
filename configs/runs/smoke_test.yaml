@@ -1,0 +1,12 @@
+# Smoke-test run — verifies that the pipeline machinery is installed correctly.
+# No external input files are required; all data is generated synthetically.
+# Expected runtime: a few seconds.
+
+resume: False
+
+pipelines: smoke_test
+
+output_dir: results/smoke_test/outputs
+log_dir: results/smoke_test/logs
+
+inputs: {}

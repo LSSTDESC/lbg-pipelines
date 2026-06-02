@@ -1,0 +1,14 @@
+# Config for smoke-test pipeline
+
+SmokeTestSource:
+  n_galaxies: 200
+  seed: 42
+
+SmokeTestLsst:
+  name: SmokeTestLsst
+  nYrObs: 1.0
+
+SmokeTestDepthCut:
+  name: SmokeTestDepthCut
+  cuts:
+    i: 25.3
