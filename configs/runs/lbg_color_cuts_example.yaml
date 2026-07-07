@@ -1,0 +1,14 @@
+# Run config for selecting LBGs using color cuts
+
+resume: False
+
+pipelines: select_lbg_color_cuts
+
+output_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/select_lbg_color_cuts/outputs
+log_dir: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/select_lbg_color_cuts/logs
+
+inputs:
+  photometry_catalog: /global/cfs/cdirs/lsst/groups/WLSS/LBG/shared/select_lbg_color_cuts/inputs/photometry_catalog.hdf5
+
+pre_script: ""
+post_script: ""
